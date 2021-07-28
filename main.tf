@@ -46,9 +46,8 @@ resource "aws_instance" "example" {
               sudo chmod +x /usr/local/bin/docker-compose
               docker pull wordpress
               docker pull mysql:5.7
-              wget https://raw.githubusercontent.com/eshnil2000/aws-ami-packer-docker/master/docker-compose.yml
-              docker-compose up
-
+              wget https://raw.githubusercontent.com/eshnil2000/aws-ami-packer-docker/master/docker-compose.yml -P /tmp
+              docker-compose  -f /tmp/docker-compose.yml up -d
               EOF
   #docker pull jwilder/whoami    
   #docker run -d -p 8080:8000 --name whoami -t jwilder/whoami
