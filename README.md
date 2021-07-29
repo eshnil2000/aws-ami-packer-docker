@@ -1,8 +1,22 @@
 
 ## INSTRUCTIONS TO INSTALL PACKER ##############
+* install aws cli
+* https://docs.aws.amazon.com/cli/latest/userguide/install-cliv2-linux.html#cliv2-linux-install
+
 * #export AWS_ACCESS_KEY_ID=XXX
 * #export AWS_SECRET_ACCESS_KEY=xxx
 * #sudo apt-get update && sudo apt-get install packer
+* replace "sg-YOUR-SECURITY-GROUP" WITH YOUR SECURITY GROUP
+* Make sure security group has ssh access from your IP address
+```
+source "amazon-ebs" "ubuntu" {
+  ami_name      = "learn-packer-linux-aws-docker"
+  ...
+  security_group_id = "sg-YOUR-SECURITY-GROUP"
+
+}
+```
+
 * ## EXECUTE THE COMMANDS
 * #packer init .
 * #packer fmt .
@@ -15,6 +29,22 @@
 * #unzip terraform_0.12.0_linux_amd64.zip
 * #sudo mv terraform /usr/bin/
 * #which terraform
+* in main.tf, change security group IP address to your own IP
+```
+resource "aws_security_group" "ssh" {
+
+  name = var.security_group_name2
+
+  ingress {
+    from_port   = 22
+    to_port     = 22
+    protocol    = "tcp"
+    #cidr_blocks = ["0.0.0.0/0"]
+    cidr_blocks = ["YOUR-IP-ADDRESS/32"]
+    #cidr_blocks = [format("%s/%s",data.external.whatismyip.result["internet_ip"],32)]
+
+  }
+```
 * #terraform init
 * #terraform plan
 * #terraform apply --auto-approve

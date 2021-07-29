@@ -33,6 +33,7 @@ source "amazon-ebs" "ubuntu" {
   }
   ssh_username = "ubuntu"
   vpc_id       = "vpc-32d56f59"
+  security_group_id = "sg-07d81e788234bfa40"
 
 }
 
