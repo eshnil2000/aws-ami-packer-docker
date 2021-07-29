@@ -1,0 +1,180 @@
+nick@DESKTOP-IOHM3LJ:~/PACKER/packer-ami-docker$ packer init .
+nick@DESKTOP-IOHM3LJ:~/PACKER/packer-ami-docker$ packer fmt .
+nick@DESKTOP-IOHM3LJ:~/PACKER/packer-ami-docker$ packer build aws-ubuntu-docker.pkr.hcl
+amazon-ebs.ubuntu: output will be in this color.
+
+==> amazon-ebs.ubuntu: Prevalidating any provided VPC information
+==> amazon-ebs.ubuntu: Prevalidating AMI Name: learn-packer-linux-aws-docker
+    amazon-ebs.ubuntu: Found Image ID: ami-01685d240b8fbbfeb
+==> amazon-ebs.ubuntu: Creating temporary keypair: packer_61022e5b-4acb-05cf-1707-dd9a8abb9fb2
+==> amazon-ebs.ubuntu: Creating temporary security group for this instance: packer_61022e5e-a722-b9c6-5d01-beabefabe068
+==> amazon-ebs.ubuntu: Authorizing access to port 22 from [0.0.0.0/0] in the temporary security groups...
+==> amazon-ebs.ubuntu: Launching a source AWS instance...
+==> amazon-ebs.ubuntu: Adding tags to source instance
+    amazon-ebs.ubuntu: Adding tag: "Name": "Packer Builder"
+    amazon-ebs.ubuntu: Instance ID: i-0d8dea6485b239276
+==> amazon-ebs.ubuntu: Waiting for instance (i-0d8dea6485b239276) to become ready...
+==> amazon-ebs.ubuntu: Using SSH communicator to connect: 18.191.133.186
+==> amazon-ebs.ubuntu: Waiting for SSH to become available...
+==> amazon-ebs.ubuntu: Timeout waiting for SSH.
+==> amazon-ebs.ubuntu: Terminating the source AWS instance...
+==> amazon-ebs.ubuntu: Cleaning up any extra volumes...
+==> amazon-ebs.ubuntu: No volumes to clean up, skipping
+==> amazon-ebs.ubuntu: Deleting temporary security group...
+==> amazon-ebs.ubuntu: Deleting temporary keypair...
+Build 'amazon-ebs.ubuntu' errored after 6 minutes 41 seconds: Timeout waiting for SSH.
+
+==> Wait completed after 6 minutes 41 seconds
+
+==> Some builds didn't complete successfully and had errors:
+--> amazon-ebs.ubuntu: Timeout waiting for SSH.
+
+==> Builds finished but no artifacts were created.
+nick@DESKTOP-IOHM3LJ:~/PACKER/packer-ami-docker$ INTERNETIP="$(dig +short myip.opendns.com @resolver1.opendns.com -4)"
+nick@DESKTOP-IOHM3LJ:~/PACKER/packer-ami-docker$ echo $INTERNETIP
+
+nick@DESKTOP-IOHM3LJ:~/PACKER/packer-ami-docker$ packer build aws-ubuntu-docker.pkr.hcl
+amazon-ebs.ubuntu: output will be in this color.
+
+==> amazon-ebs.ubuntu: Prevalidating any provided VPC information
+==> amazon-ebs.ubuntu: Prevalidating AMI Name: learn-packer-linux-aws-docker
+    amazon-ebs.ubuntu: Found Image ID: ami-01685d240b8fbbfeb
+==> amazon-ebs.ubuntu: Creating temporary keypair: packer_6102330c-0286-5374-01c2-88ee5ff05910
+==> amazon-ebs.ubuntu: Launching a source AWS instance...
+==> amazon-ebs.ubuntu: Adding tags to source instance
+    amazon-ebs.ubuntu: Adding tag: "Name": "Packer Builder"
+    amazon-ebs.ubuntu: Instance ID: i-0b4bc2160276a56ec
+==> amazon-ebs.ubuntu: Waiting for instance (i-0b4bc2160276a56ec) to become ready...
+==> amazon-ebs.ubuntu: Using SSH communicator to connect: 18.222.174.248
+==> amazon-ebs.ubuntu: Waiting for SSH to become available...
+==> amazon-ebs.ubuntu: Connected to SSH!
+==> amazon-ebs.ubuntu: Uploading bootstrap_docker_ce.sh => /tmp/bootstrap_docker_ce.sh
+    amazon-ebs.ubuntu: bootstrap_docker_ce.sh 564 B / 564 B [=========================================] 100.00% 0s
+==> amazon-ebs.ubuntu: Uploading cleanup.sh => /tmp/cleanup.sh
+    amazon-ebs.ubuntu: cleanup.sh 209 B / 209 B [=====================================================] 100.00% 0s
+==> amazon-ebs.ubuntu: Provisioning with shell script: /tmp/packer-shell147487209
+    amazon-ebs.ubuntu: ubuntu
+    amazon-ebs.ubuntu: total 44K
+    amazon-ebs.ubuntu: drwxrwxrwt  8 root   root   4.0K Jul 29 04:48 .
+    amazon-ebs.ubuntu: drwxr-xr-x 23 root   root   4.0K Jul 29 04:48 ..
+    amazon-ebs.ubuntu: drwxrwxrwt  2 root   root   4.0K Jul 29 04:48 .ICE-unix
+    amazon-ebs.ubuntu: drwxrwxrwt  2 root   root   4.0K Jul 29 04:48 .Test-unix
+    amazon-ebs.ubuntu: drwxrwxrwt  2 root   root   4.0K Jul 29 04:48 .X11-unix
+    amazon-ebs.ubuntu: drwxrwxrwt  2 root   root   4.0K Jul 29 04:48 .XIM-unix
+    amazon-ebs.ubuntu: drwxrwxrwt  2 root   root   4.0K Jul 29 04:48 .font-unix
+    amazon-ebs.ubuntu: -rwxr-xr-x  1 ubuntu ubuntu  564 Jul 29 04:48 bootstrap_docker_ce.sh
+    amazon-ebs.ubuntu: -rwxr-xr-x  1 ubuntu ubuntu  209 Jul 29 04:48 cleanup.sh
+    amazon-ebs.ubuntu: -rwxr-xr-x  1 ubuntu ubuntu  150 Jul 29 04:48 script_461.sh
+    amazon-ebs.ubuntu: drwx------  3 root   root   4.0K Jul 29 04:48 systemd-private-f673253d2c33413ba25dc722be18aca6-systemd-timesyncd.service-gZV7Ln
+    amazon-ebs.ubuntu: # Executing docker install script, commit: 7cae5f8b0decc17d6571f9f52eb840fbc13b2737
+==> amazon-ebs.ubuntu: + sudo -E sh -c apt-get update -qq >/dev/null
+==> amazon-ebs.ubuntu: + sudo -E sh -c DEBIAN_FRONTEND=noninteractive apt-get install -y -qq apt-transport-https ca-certificates curl >/dev/null
+==> amazon-ebs.ubuntu: + sudo -E sh -c curl -fsSL "https://download.docker.com/linux/ubuntu/gpg" | apt-key add -qq - >/dev/null
+==> amazon-ebs.ubuntu: + sudo -E sh -c echo "deb [arch=amd64] https://download.docker.com/linux/ubuntu xenial stable" > /etc/apt/sources.list.d/docker.list
+==> amazon-ebs.ubuntu: + sudo -E sh -c apt-get update -qq >/dev/null
+==> amazon-ebs.ubuntu: + [ -n  ]
+==> amazon-ebs.ubuntu: + sudo -E sh -c apt-get install -y -qq --no-install-recommends docker-ce >/dev/null
+==> amazon-ebs.ubuntu: debconf: unable to initialize frontend: Dialog
+==> amazon-ebs.ubuntu: debconf: (Dialog frontend will not work on a dumb terminal, an emacs shell buffer, or without a controlling terminal.)
+==> amazon-ebs.ubuntu: debconf: falling back to frontend: Readline
+==> amazon-ebs.ubuntu: debconf: unable to initialize frontend: Readline
+==> amazon-ebs.ubuntu: debconf: (This frontend requires a controlling tty.)
+==> amazon-ebs.ubuntu: debconf: falling back to frontend: Teletype
+==> amazon-ebs.ubuntu: dpkg-preconfigure: unable to re-open stdin:
+==> amazon-ebs.ubuntu: + [ -n 1 ]
+==> amazon-ebs.ubuntu: + sudo -E sh -c DEBIAN_FRONTEND=noninteractive apt-get install -y -qq docker-ce-rootless-extras >/dev/null
+    amazon-ebs.ubuntu: Client: Docker Engine - Community
+    amazon-ebs.ubuntu:  Version:           20.10.7
+    amazon-ebs.ubuntu:  API version:       1.41
+==> amazon-ebs.ubuntu: + sudo -E sh -c docker version
+    amazon-ebs.ubuntu:  Go version:        go1.13.15
+==> amazon-ebs.ubuntu: groupadd: group 'docker' already exists
+==> amazon-ebs.ubuntu: Synchronizing state of docker.service with SysV init with /lib/systemd/systemd-sysv-install...
+==> amazon-ebs.ubuntu: Executing /lib/systemd/systemd-sysv-install enable docker
+    amazon-ebs.ubuntu:  Git commit:        f0df350
+    amazon-ebs.ubuntu:  Built:             Wed Jun  2 11:56:47 2021
+    amazon-ebs.ubuntu:  OS/Arch:           linux/amd64
+    amazon-ebs.ubuntu:  Context:           default
+    amazon-ebs.ubuntu:  Experimental:      true
+    amazon-ebs.ubuntu:
+    amazon-ebs.ubuntu: Server: Docker Engine - Community
+    amazon-ebs.ubuntu:  Engine:
+    amazon-ebs.ubuntu:   Version:          20.10.7
+    amazon-ebs.ubuntu:   API version:      1.41 (minimum version 1.12)
+    amazon-ebs.ubuntu:   Go version:       go1.13.15
+    amazon-ebs.ubuntu:   Git commit:       b0f5bc3
+    amazon-ebs.ubuntu:   Built:            Wed Jun  2 11:54:58 2021
+    amazon-ebs.ubuntu:   OS/Arch:          linux/amd64
+    amazon-ebs.ubuntu:   Experimental:     false
+    amazon-ebs.ubuntu:  containerd:
+    amazon-ebs.ubuntu:   Version:          1.4.6
+    amazon-ebs.ubuntu:   GitCommit:        d71fcd7d8303cbf684402823e425e9dd2e99285d
+    amazon-ebs.ubuntu:  runc:
+    amazon-ebs.ubuntu:   Version:          1.0.0-rc95
+    amazon-ebs.ubuntu:   GitCommit:        b9ee9c6314599f1b4a7f497e1f1f856fe433d3b7
+    amazon-ebs.ubuntu:  docker-init:
+    amazon-ebs.ubuntu:   Version:          0.19.0
+    amazon-ebs.ubuntu:   GitCommit:        de40ad0
+    amazon-ebs.ubuntu:
+    amazon-ebs.ubuntu: ================================================================================
+    amazon-ebs.ubuntu:
+    amazon-ebs.ubuntu: To run Docker as a non-privileged user, consider setting up the
+    amazon-ebs.ubuntu: Docker daemon in rootless mode for your user:
+    amazon-ebs.ubuntu:
+    amazon-ebs.ubuntu:     dockerd-rootless-setuptool.sh install
+    amazon-ebs.ubuntu:
+    amazon-ebs.ubuntu: Visit https://docs.docker.com/go/rootless/ to learn about rootless mode.
+    amazon-ebs.ubuntu:
+    amazon-ebs.ubuntu:
+    amazon-ebs.ubuntu: To run the Docker daemon as a fully privileged service, but granting non-root
+    amazon-ebs.ubuntu: users access, refer to https://docs.docker.com/go/daemon-access/
+    amazon-ebs.ubuntu:
+    amazon-ebs.ubuntu: WARNING: Access to the remote API on a privileged Docker daemon is equivalent
+    amazon-ebs.ubuntu:          to root access on the host. Refer to the 'Docker daemon attack surface'
+    amazon-ebs.ubuntu:          documentation for details: https://docs.docker.com/go/attack-surface/
+    amazon-ebs.ubuntu:
+    amazon-ebs.ubuntu: ================================================================================
+    amazon-ebs.ubuntu:
+==> amazon-ebs.ubuntu:   % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+==> amazon-ebs.ubuntu:                                  Dload  Upload   Total   Spent    Left  Speed
+==> amazon-ebs.ubuntu: 100   612  100   612    0     0   2634      0 --:--:-- --:--:-- --:--:--  2626
+    amazon-ebs.ubuntu: Docker version 20.10.7, build f0df350
+==> amazon-ebs.ubuntu: 100  2585  100  2585    0     0   7099      0 --:--:-- --:--:-- --:--:--  7099
+    amazon-ebs.ubuntu: Using default tag: latest
+==> amazon-ebs.ubuntu: Got permission denied while trying to connect to the Docker daemon socket at unix:///var/run/docker.sock: Post http://%2Fvar%2Frun%2Fdocker.sock/v1.24/images/create?fromImage=wordpress&tag=latest: dial unix /var/run/docker.sock: connect: permission denied
+==> amazon-ebs.ubuntu: Got permission denied while trying to connect to the Docker daemon socket at unix:///var/run/docker.sock: Post http://%2Fvar%2Frun%2Fdocker.sock/v1.24/images/create?fromImage=mysql&tag=5.7: dial unix /var/run/docker.sock: connect: permission denied
+==> amazon-ebs.ubuntu: --2021-07-29 04:49:34--  https://raw.githubusercontent.com/eshnil2000/aws-ami-packer-docker/master/docker-compose.yml
+==> amazon-ebs.ubuntu: Resolving raw.githubusercontent.com (raw.githubusercontent.com)... 185.199.108.133, 185.199.109.133, 185.199.110.133, ...
+==> amazon-ebs.ubuntu: Connecting to raw.githubusercontent.com (raw.githubusercontent.com)|185.199.108.133|:443... connected.
+==> amazon-ebs.ubuntu: HTTP request sent, awaiting response... 200 OK
+==> amazon-ebs.ubuntu: Length: 607 [text/plain]
+==> amazon-ebs.ubuntu: Saving to: '/tmp/docker-compose.yml'
+==> amazon-ebs.ubuntu:
+==> amazon-ebs.ubuntu:      0K                                                       100% 37.9M=0s
+==> amazon-ebs.ubuntu:
+==> amazon-ebs.ubuntu: 2021-07-29 04:49:34 (37.9 MB/s) - '/tmp/docker-compose.yml' saved [607/607]
+==> amazon-ebs.ubuntu:
+    amazon-ebs.ubuntu: Cleaning up after bootstrapping...
+    amazon-ebs.ubuntu: Reading package lists...
+    amazon-ebs.ubuntu: Building dependency tree...
+    amazon-ebs.ubuntu: Reading state information...
+    amazon-ebs.ubuntu: 0 upgraded, 0 newly installed, 0 to remove and 1 not upgraded.
+==> amazon-ebs.ubuntu: Stopping the source instance...
+    amazon-ebs.ubuntu: Stopping instance
+==> amazon-ebs.ubuntu: Waiting for the instance to stop...
+==> amazon-ebs.ubuntu: Creating AMI learn-packer-linux-aws-docker from instance i-0b4bc2160276a56ec
+    amazon-ebs.ubuntu: AMI: ami-0e17da60f4b571988
+==> amazon-ebs.ubuntu: Waiting for AMI to become ready...
+==> amazon-ebs.ubuntu: Terminating the source AWS instance...
+==> amazon-ebs.ubuntu: Cleaning up any extra volumes...
+==> amazon-ebs.ubuntu: No volumes to clean up, skipping
+==> amazon-ebs.ubuntu: Deleting temporary keypair...
+Build 'amazon-ebs.ubuntu' finished after 3 minutes 55 seconds.
+
+==> Wait completed after 3 minutes 55 seconds
+
+==> Builds finished. The artifacts of successful builds are:
+--> amazon-ebs.ubuntu: AMIs were created:
+us-east-2: ami-0e17da60f4b571988
+
+nick@DESKTOP-IOHM3LJ:~/PACKER/packer-ami-docker$

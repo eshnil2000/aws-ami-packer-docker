@@ -1,0 +1,373 @@
+nick@DESKTOP-IOHM3LJ:~/PACKER/packer-ami-docker$ terraform_0.12.0 init
+
+Initializing the backend...
+
+Initializing provider plugins...
+
+Terraform has been successfully initialized!
+
+You may now begin working with Terraform. Try running "terraform plan" to see
+any changes that are required for your infrastructure. All Terraform commands
+should now work.
+
+If you ever set or change modules or backend configuration for Terraform,
+rerun this command to reinitialize your working directory. If you forget, other
+commands will detect it and remind you to do so if necessary.
+nick@DESKTOP-IOHM3LJ:~/PACKER/packer-ami-docker$ terraform_0.12.0 plan
+Refreshing Terraform state in-memory prior to plan...
+The refreshed state will be used to calculate this plan, but will not be
+persisted to local or remote state storage.
+
+
+------------------------------------------------------------------------
+
+An execution plan has been generated and is shown below.
+Resource actions are indicated with the following symbols:
+  + create
+
+Terraform will perform the following actions:
+
+  # aws_instance.example will be created
+  + resource "aws_instance" "example" {
+      + ami                          = "ami-0fd1b2413f2faede1"
+      + arn                          = (known after apply)
+      + associate_public_ip_address  = (known after apply)
+      + availability_zone            = (known after apply)
+      + cpu_core_count               = (known after apply)
+      + cpu_threads_per_core         = (known after apply)
+      + get_password_data            = false
+      + host_id                      = (known after apply)
+      + id                           = (known after apply)
+      + instance_state               = (known after apply)
+      + instance_type                = "t2.micro"
+      + ipv6_address_count           = (known after apply)
+      + ipv6_addresses               = (known after apply)
+      + key_name                     = "aws-poc"
+      + network_interface_id         = (known after apply)
+      + outpost_arn                  = (known after apply)
+      + password_data                = (known after apply)
+      + placement_group              = (known after apply)
+      + primary_network_interface_id = (known after apply)
+      + private_dns                  = (known after apply)
+      + private_ip                   = (known after apply)
+      + public_dns                   = (known after apply)
+      + public_ip                    = (known after apply)
+      + security_groups              = (known after apply)
+      + source_dest_check            = true
+      + subnet_id                    = (known after apply)
+      + tags                         = {
+          + "Name" = "terraform-example"
+        }
+      + tenancy                      = (known after apply)
+      + user_data                    = "1b5f1a7abceba17c94f73c4fe07d9943df128fbd"
+      + volume_tags                  = (known after apply)
+      + vpc_security_group_ids       = (known after apply)
+
+      + ebs_block_device {
+          + delete_on_termination = (known after apply)
+          + device_name           = (known after apply)
+          + encrypted             = (known after apply)
+          + iops                  = (known after apply)
+          + kms_key_id            = (known after apply)
+          + snapshot_id           = (known after apply)
+          + volume_id             = (known after apply)
+          + volume_size           = (known after apply)
+          + volume_type           = (known after apply)
+        }
+
+      + ephemeral_block_device {
+          + device_name  = (known after apply)
+          + no_device    = (known after apply)
+          + virtual_name = (known after apply)
+        }
+
+      + metadata_options {
+          + http_endpoint               = (known after apply)
+          + http_put_response_hop_limit = (known after apply)
+          + http_tokens                 = (known after apply)
+        }
+
+      + network_interface {
+          + delete_on_termination = (known after apply)
+          + device_index          = (known after apply)
+          + network_interface_id  = (known after apply)
+        }
+
+      + root_block_device {
+          + delete_on_termination = (known after apply)
+          + device_name           = (known after apply)
+          + encrypted             = (known after apply)
+          + iops                  = (known after apply)
+          + kms_key_id            = (known after apply)
+          + volume_id             = (known after apply)
+          + volume_size           = (known after apply)
+          + volume_type           = (known after apply)
+        }
+    }
+
+  # aws_security_group.instance will be created
+  + resource "aws_security_group" "instance" {
+      + arn                    = (known after apply)
+      + description            = "Managed by Terraform"
+      + egress                 = (known after apply)
+      + id                     = (known after apply)
+      + ingress                = [
+          + {
+              + cidr_blocks      = [
+                  + "0.0.0.0/0",
+                ]
+              + description      = ""
+              + from_port        = 8080
+              + ipv6_cidr_blocks = []
+              + prefix_list_ids  = []
+              + protocol         = "tcp"
+              + security_groups  = []
+              + self             = false
+              + to_port          = 8080
+            },
+        ]
+      + name                   = "terraform-example-instance"
+      + owner_id               = (known after apply)
+      + revoke_rules_on_delete = false
+      + vpc_id                 = (known after apply)
+    }
+
+  # aws_security_group.ssh will be created
+  + resource "aws_security_group" "ssh" {
+      + arn                    = (known after apply)
+      + description            = "Managed by Terraform"
+      + egress                 = [
+          + {
+              + cidr_blocks      = [
+                  + "0.0.0.0/0",
+                ]
+              + description      = ""
+              + from_port        = 0
+              + ipv6_cidr_blocks = [
+                  + "::/0",
+                ]
+              + prefix_list_ids  = []
+              + protocol         = "-1"
+              + security_groups  = []
+              + self             = false
+              + to_port          = 0
+            },
+        ]
+      + id                     = (known after apply)
+      + ingress                = [
+          + {
+              + cidr_blocks      = [
+                  + "158.51.192.73/32",
+                ]
+              + description      = ""
+              + from_port        = 22
+              + ipv6_cidr_blocks = []
+              + prefix_list_ids  = []
+              + protocol         = "tcp"
+              + security_groups  = []
+              + self             = false
+              + to_port          = 22
+            },
+        ]
+      + name                   = "terraform-example-ssh"
+      + owner_id               = (known after apply)
+      + revoke_rules_on_delete = false
+      + vpc_id                 = (known after apply)
+    }
+
+Plan: 3 to add, 0 to change, 0 to destroy.
+
+------------------------------------------------------------------------
+
+Note: You didn't specify an "-out" parameter to save this plan, so Terraform
+can't guarantee that exactly these actions will be performed if
+"terraform apply" is subsequently run.
+
+nick@DESKTOP-IOHM3LJ:~/PACKER/packer-ami-docker$ terraform_0.12.0 apply --auto-approve
+aws_security_group.instance: Creating...
+aws_security_group.ssh: Creating...
+aws_security_group.instance: Creation complete after 3s [id=sg-0652b78c83d97fc24]
+aws_security_group.ssh: Creation complete after 4s [id=sg-0efd3e01b44531964]
+aws_instance.example: Creating...
+
+Error: Error launching source instance: InvalidAMIID.NotFound: The image id '[ami-0fd1b2413f2faede1]' does not exist
+        status code: 400, request id: 7a434bd6-dd9c-4e15-a83d-2e54efd14a3d
+
+  on main.tf line 24, in resource "aws_instance" "example":
+  24: resource "aws_instance" "example" {
+
+
+nick@DESKTOP-IOHM3LJ:~/PACKER/packer-ami-docker$ terraform_0.12.0 apply --auto-approve
+aws_security_group.instance: Refreshing state... [id=sg-0652b78c83d97fc24]
+aws_security_group.ssh: Refreshing state... [id=sg-0efd3e01b44531964]
+aws_instance.example: Creating...
+aws_instance.example: Still creating... [10s elapsed]
+aws_instance.example: Still creating... [20s elapsed]
+aws_instance.example: Provisioning with 'file'...
+aws_instance.example: Still creating... [30s elapsed]
+aws_instance.example: Still creating... [40s elapsed]
+aws_instance.example: Still creating... [50s elapsed]
+aws_instance.example: Still creating... [1m0s elapsed]
+aws_instance.example: Still creating... [1m10s elapsed]
+aws_instance.example: Still creating... [1m20s elapsed]
+aws_instance.example: Still creating... [1m30s elapsed]
+aws_instance.example: Still creating... [1m40s elapsed]
+aws_instance.example: Still creating... [1m50s elapsed]
+aws_instance.example: Still creating... [2m0s elapsed]
+aws_instance.example: Still creating... [2m10s elapsed]
+aws_instance.example: Still creating... [2m20s elapsed]
+^CInterrupt received.
+Please wait for Terraform to exit or data loss may occur.
+Gracefully shutting down...
+Stopping operation...
+
+
+Apply complete! Resources: 0 added, 0 changed, 0 destroyed.
+
+Outputs:
+
+public_ip = 3.129.204.69
+nick@DESKTOP-IOHM3LJ:~/PACKER/packer-ami-docker$ ssh -i ~/keys/aws-poc.pem ubuntu@3.129.204.69
+The authenticity of host '3.129.204.69 (3.129.204.69)' can't be established.
+ECDSA key fingerprint is SHA256:jr96cfAwSMJNo0+WdPUG1aPa3m9z1x1IwYXzdfR8lPs.
+Are you sure you want to continue connecting (yes/no/[fingerprint])? yes
+Warning: Permanently added '3.129.204.69' (ECDSA) to the list of known hosts.
+Welcome to Ubuntu 16.04.7 LTS (GNU/Linux 4.4.0-1128-aws x86_64)
+
+ * Documentation:  https://help.ubuntu.com
+ * Management:     https://landscape.canonical.com
+ * Support:        https://ubuntu.com/advantage
+
+UA Infra: Extended Security Maintenance (ESM) is not enabled.
+
+0 updates can be applied immediately.
+
+25 additional security updates can be applied with UA Infra: ESM
+Learn more about enabling UA Infra: ESM service for Ubuntu 16.04 at
+https://ubuntu.com/16-04
+
+New release '18.04.5 LTS' available.
+Run 'do-release-upgrade' to upgrade to it.
+
+
+ubuntu@ip-172-31-18-227:~$ docker ps
+CONTAINER ID   IMAGE     COMMAND   CREATED   STATUS    PORTS     NAMES
+ubuntu@ip-172-31-18-227:~$ ls /tmp/
+systemd-private-054e67a0c49c4e2aa6373577399827b8-systemd-timesyncd.service-QtJ34y
+ubuntu@ip-172-31-18-227:~$ history
+    1  docker ps
+    2  ls /tmp/
+    3  history
+ubuntu@ip-172-31-18-227:~$ cd ~
+ubuntu@ip-172-31-18-227:~$ ls
+ubuntu@ip-172-31-18-227:~$ docker
+docker                         dockerd-rootless-setuptool.sh  docker-proxy
+docker-compose                 dockerd-rootless.sh
+dockerd                        docker-init
+ubuntu@ip-172-31-18-227:~$ docker
+docker                         dockerd-rootless-setuptool.sh  docker-proxy
+docker-compose                 dockerd-rootless.sh
+dockerd                        docker-init
+ubuntu@ip-172-31-18-227:~$ docker
+docker                         dockerd-rootless-setuptool.sh  docker-proxy
+docker-compose                 dockerd-rootless.sh
+dockerd                        docker-init
+ubuntu@ip-172-31-18-227:~$ docker
+docker                         dockerd-rootless-setuptool.sh  docker-proxy
+docker-compose                 dockerd-rootless.sh
+dockerd                        docker-init
+ubuntu@ip-172-31-18-227:~$ docker-compose ^C
+ubuntu@ip-172-31-18-227:~$ docker images
+REPOSITORY       TAG       IMAGE ID       CREATED        SIZE
+docker/compose   1.29.2    32d8a4638cd8   2 months ago   76.2MB
+ubuntu@ip-172-31-18-227:~$ exit
+logout
+Connection to 3.129.204.69 closed.
+nick@DESKTOP-IOHM3LJ:~/PACKER/packer-ami-docker$ terraform_0.12.0 destroy --auto-approve
+aws_security_group.instance: Refreshing state... [id=sg-0652b78c83d97fc24]
+aws_security_group.ssh: Refreshing state... [id=sg-0efd3e01b44531964]
+aws_instance.example: Refreshing state... [id=i-06092e03ed7b45007]
+aws_instance.example: Destroying... [id=i-06092e03ed7b45007]
+aws_instance.example: Still destroying... [id=i-06092e03ed7b45007, 10s elapsed]
+aws_instance.example: Still destroying... [id=i-06092e03ed7b45007, 20s elapsed]
+aws_instance.example: Still destroying... [id=i-06092e03ed7b45007, 30s elapsed]
+aws_instance.example: Still destroying... [id=i-06092e03ed7b45007, 40s elapsed]
+aws_instance.example: Destruction complete after 41s
+aws_security_group.instance: Destroying... [id=sg-0652b78c83d97fc24]
+aws_security_group.ssh: Destroying... [id=sg-0efd3e01b44531964]
+aws_security_group.ssh: Destruction complete after 1s
+aws_security_group.instance: Destruction complete after 1s
+
+Destroy complete! Resources: 3 destroyed.
+nick@DESKTOP-IOHM3LJ:~/PACKER/packer-ami-docker$ terraform_0.12.0 apply --auto-approve
+aws_security_group.instance: Creating...
+aws_security_group.ssh: Creating...
+aws_security_group.instance: Creation complete after 3s [id=sg-094e5ffad63e853ff]
+aws_security_group.ssh: Creation complete after 3s [id=sg-011f9ddf471246bc1]
+aws_instance.example: Creating...
+aws_instance.example: Still creating... [10s elapsed]
+aws_instance.example: Still creating... [20s elapsed]
+aws_instance.example: Provisioning with 'file'...
+aws_instance.example: Still creating... [30s elapsed]
+aws_instance.example: Still creating... [40s elapsed]
+aws_instance.example: Still creating... [50s elapsed]
+aws_instance.example: Still creating... [1m0s elapsed]
+aws_instance.example: Still creating... [1m10s elapsed]
+aws_instance.example: Still creating... [1m20s elapsed]
+aws_instance.example: Still creating... [1m30s elapsed]
+aws_instance.example: Still creating... [1m40s elapsed]
+aws_instance.example: Still creating... [1m50s elapsed]
+aws_instance.example: Still creating... [2m0s elapsed]
+aws_instance.example: Still creating... [2m10s elapsed]
+aws_instance.example: Still creating... [2m20s elapsed]
+aws_instance.example: Still creating... [2m30s elapsed]
+aws_instance.example: Still creating... [2m40s elapsed]
+aws_instance.example: Still creating... [2m50s elapsed]
+aws_instance.example: Still creating... [3m0s elapsed]
+^CInterrupt received.
+Please wait for Terraform to exit or data loss may occur.
+Gracefully shutting down...
+Stopping operation...
+
+
+Apply complete! Resources: 2 added, 0 changed, 0 destroyed.
+
+Outputs:
+
+public_ip = 3.144.39.19
+nick@DESKTOP-IOHM3LJ:~/PACKER/packer-ami-docker$ ssh -i ~/keys/aws-poc.pem ubuntu@3.144.39.19
+The authenticity of host '3.144.39.19 (3.144.39.19)' can't be established.
+ECDSA key fingerprint is SHA256:yTOajec6kg8OTGFWgfASfLTow5+EJzSekOe+Erya0hI.
+Are you sure you want to continue connecting (yes/no/[fingerprint])? yes
+Warning: Permanently added '3.144.39.19' (ECDSA) to the list of known hosts.
+Welcome to Ubuntu 16.04.7 LTS (GNU/Linux 4.4.0-1128-aws x86_64)
+
+ * Documentation:  https://help.ubuntu.com
+ * Management:     https://landscape.canonical.com
+ * Support:        https://ubuntu.com/advantage
+
+UA Infra: Extended Security Maintenance (ESM) is not enabled.
+
+0 updates can be applied immediately.
+
+25 additional security updates can be applied with UA Infra: ESM
+Learn more about enabling UA Infra: ESM service for Ubuntu 16.04 at
+https://ubuntu.com/16-04
+
+New release '18.04.5 LTS' available.
+Run 'do-release-upgrade' to upgrade to it.
+
+
+ubuntu@ip-172-31-11-177:~$ docker images
+REPOSITORY       TAG       IMAGE ID       CREATED        SIZE
+wordpress        latest    c0a17bf0d898   6 days ago     551MB
+mysql            5.7       8cf625070931   6 days ago     448MB
+docker/compose   1.29.2    32d8a4638cd8   2 months ago   76.2MB
+ubuntu@ip-172-31-11-177:~$ docker ps
+CONTAINER ID   IMAGE       COMMAND                  CREATED              STATUS              PORTS                                   NAMES
+f664ec5c5a3b   wordpress   "docker-entrypoint.s…"   About a minute ago   Up About a minute   0.0.0.0:8080->80/tcp, :::8080->80/tcp   tmp_wordpress_1
+3ea06ed157b4   mysql:5.7   "docker-entrypoint.s…"   About a minute ago   Up About a minute   3306/tcp, 33060/tcp                     tmp_db_1
+ubuntu@ip-172-31-11-177:~$ exit
+logout
+Connection to 3.144.39.19 closed.
+nick@DESKTOP-IOHM3LJ:~/PACKER/packer-ami-docker$

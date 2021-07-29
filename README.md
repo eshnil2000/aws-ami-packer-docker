@@ -52,3 +52,12 @@ resource "aws_security_group" "ssh" {
 * #If multiple versions of Terraform: 
 * #sudo ln -s /usr/local/bin/terraform_0.12.0/terraform /usr/bin/terraform_0.12.0
 
+### The Problem: 
+* Benchmarking an App (example: Wordpress) on 1000s of instances requires installing the same software repeatedly. 
+### The Solution: 
+* Create pre-installed AMI Images that already have the software pre-installed on instance boot. Using Packer
+
+### The Problem: 
+* Manual install of apps error prone, not easily repeatable, especially when Infrastructure also needs to be repeatable.
+### The SOlution:
+* Use Terraform to automate/ repeatable infrastructure, use Docker to automate software install, easily repeatable.
