@@ -42,8 +42,9 @@ resource "aws_instance" "example" {
               sudo groupadd docker
               sudo usermod -aG docker ubuntu
               sudo systemctl enable docker
-              sudo curl -L --fail https://github.com/docker/compose/releases/download/1.29.2/run.sh -o /usr/local/bin/docker-compose
-              sudo chmod +x /usr/local/bin/docker-compose
+              docker pull wordpress
+              docker pull mysql:5.7
+              wget https://raw.githubusercontent.com/eshnil2000/aws-ami-packer-docker/master/docker-compose.yml -P /tmp
               docker-compose  -f /tmp/docker-compose.yml up -d
               EOF
   #docker pull jwilder/whoami    
@@ -52,7 +53,8 @@ resource "aws_instance" "example" {
   #docker pull mysql:5.7
   #docker-compose -f /tmp/docker-compose.yml
   #wget https://raw.githubusercontent.com/eshnil2000/aws-ami-packer-docker/master/docker-compose.yml -P /tmp
-
+  #sudo curl -L --fail https://github.com/docker/compose/releases/download/1.29.2/run.sh -o /usr/local/bin/docker-compose
+  #sudo chmod +x /usr/local/bin/docker-compose
 
   tags = {
     Name = "terraform-example"
@@ -85,7 +87,8 @@ resource "aws_security_group" "ssh" {
     to_port     = 22
     protocol    = "tcp"
     #cidr_blocks = ["0.0.0.0/0"]
-    cidr_blocks = ["73.48.134.89/32"]
+    #cidr_blocks = ["73.48.134.89/32"]
+    cidr_blocks = ["158.51.192.73/32"]
     #cidr_blocks = [format("%s/%s",data.external.whatismyip.result["internet_ip"],32)]
 
   }
@@ -116,7 +119,7 @@ variable "security_group_name2" {
 variable "ami_id" {
   description = "The ami ID built by Packer"
   type        = string
-  default     = "ami-0fd1b2413f2faede1"
+  default     = "ami-0e17da60f4b571988"
 }
 output "public_ip" {
   value       = aws_instance.example.public_ip
